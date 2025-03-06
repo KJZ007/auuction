@@ -1,14 +1,16 @@
+import React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
+import { LandingPage } from './pages/LandingPage';
 import UserDashboard from './pages/UserDashboard';
 import { useState } from 'react';
 
-function App() {
+const App: React.FC = () => {
   const [connectedAccount, setConnectedAccount] = useState<string>('');
 
   const handleConnect = (account: string) => {
     setConnectedAccount(account);
+    console.log('Connected account:', account);
   };
 
   const handleLogout = () => {
@@ -37,6 +39,6 @@ function App() {
       </BrowserRouter>
     </ChakraProvider>
   );
-}
+};
 
 export default App; 

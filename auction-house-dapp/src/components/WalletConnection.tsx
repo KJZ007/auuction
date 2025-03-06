@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Text, VStack, useToast, Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +14,7 @@ interface WalletConnectionProps {
   onConnect: (account: string) => void;
 }
 
-const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
+export const WalletConnection: React.FC<WalletConnectionProps> = ({ onConnect }) => {
   const [account, setAccount] = useState<string>('');
   const [accounts, setAccounts] = useState<string[]>([]);
   const [isConnected, setIsConnected] = useState<boolean>(false);
@@ -77,7 +78,7 @@ const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
     }
   };
 
-  const connectWallet = async () => {
+  const handleConnect = async () => {
     try {
       const { ethereum } = window;
       
@@ -163,7 +164,7 @@ const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
     <VStack spacing={4}>
       {!isConnected ? (
         <Button
-          onClick={connectWallet}
+          onClick={handleConnect}
           colorScheme="purple"
           size="lg"
           _hover={{ transform: 'scale(1.05)' }}
@@ -197,6 +198,4 @@ const WalletConnection = ({ onConnect }: WalletConnectionProps) => {
       )}
     </VStack>
   );
-};
-
-export default WalletConnection; 
+}; 

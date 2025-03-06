@@ -1,7 +1,12 @@
+import React from 'react';
 import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
-import WalletConnection from '../components/WalletConnection';
+import { WalletConnection } from '../components/WalletConnection';
 
-const LandingPage = () => {
+export interface LandingPageProps {
+  onConnect: (account: string) => void;
+}
+
+export const LandingPage: React.FC<LandingPageProps> = ({ onConnect }) => {
   return (
     <Box
       minH="100vh"
@@ -36,12 +41,10 @@ const LandingPage = () => {
             boxShadow="xl"
             w={{ base: "90%", md: "400px" }}
           >
-            <WalletConnection />
+            <WalletConnection onConnect={onConnect} />
           </Box>
         </VStack>
       </Container>
     </Box>
   );
-};
-
-export default LandingPage; 
+}; 
